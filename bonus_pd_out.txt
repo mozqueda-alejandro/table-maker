@@ -1,0 +1,2 @@
+Table locations selected:             8, 15, 22, 
+Values corresponding to those tables: 15, 25, 15, 

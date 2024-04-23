@@ -1,0 +1,26 @@
+// Alejandro Mozqueda
+
+memo = {}
+
+// Recursively solves the problem by placing flowers on the first table
+// or skipping the first table and placing on the second, using memoization
+function solve_recurse(locations, values, x):
+    if x < 0:
+        return 0
+    if x in memo:
+        return memo[x]
+
+    place_first = solve_recurse(locations, values, get_left(locations, x)) + values[x]
+    place_second = solve_recurse(locations, values, x - 1)
+
+    // Memoize the result
+    memo[x] = max(place_first, place_second)
+    return memo[x]
+
+// Iterates backwards from the currentIndex to find the table index
+// that is > 5 units away by subtraction of x-positions
+function get_left(locations, current):
+    for i from (current - 1) to 0:
+        if locations[current] - locations[i] > 5:
+            return i
+    return -1
